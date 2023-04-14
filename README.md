@@ -143,7 +143,21 @@ gcloud dataproc batches submit spark \
 BigQuery public dataset has Chicago crimes dataset. 
 
 1. Explore the public dataset - bigquery-public-data.chicago_crime.crime
+Paste in BigQuery UI-
+```
+select * from bigquery-public-data.chicago_crime.crime where iucr='1010' LIMIT 10
+```
+![BQ-4](01-images/techcon-lab-10.png)   
+<br><br>
+
 2. Study the table we just loaded - crimes_ds.chicago_iucr_ref
+Paste in BigQuery UI-
+```
+SELECT *  FROM `techcon-datalake-lab.crimes_ds.chicago_iucr_ref` LIMIT 1000
+```
+![BQ-4](01-images/techcon-lab-11.png)   
+<br><br>
+
 3. Analyze the relationship between the two tables and how they can be joined
 4. Identify if there are IUCR description mismatches
 5. Identity missing entries in either table
