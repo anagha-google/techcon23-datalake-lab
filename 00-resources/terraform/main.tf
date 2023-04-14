@@ -22,7 +22,8 @@ locals {
 project_id                  = "${var.project_id}"
 project_nbr                 = "${var.project_number}"
 admin_upn_fqn               = "${var.user_principal_name}"
-location                    = "${var.gcp_region}"
+bq_region                   = "${var.bq_region}"
+dataproc_region             = "${var.dataproc_region}"
 umsa                        = "lab-sa"
 umsa_fqn                    = "${local.umsa}@${local.project_id}.iam.gserviceaccount.com"
 
@@ -34,6 +35,8 @@ lab_subnet_cidr             = "10.0.0.0/16"
 
 lab_data_bucket             = "data-${local.project_nbr}"
 lab_code_bucket             = "code-${local.project_nbr}"
+ 
+bq_datamart_ds              = "crimes_ds"
 
 }
 
@@ -220,7 +223,7 @@ module "vpc_creation" {
     {
       subnet_name           = "${local.lab_subnet_nm}"
       subnet_ip             = "${local.lab_subnet_cidr}"
-      subnet_region         = "${local.location}"
+      subnet_region         = "${local.dataproc_region}"
       subnet_range          = local.lab_subnet_cidr
       subnet_private_access = true
     }
@@ -269,7 +272,7 @@ resource "time_sleep" "sleep_after_network_and_firewall_creation" {
 resource "google_storage_bucket" "lab_spark_bucket_creation" {
   project                           = local.project_id 
   name                              = local.lab_spark_bucket
-  location                          = local.location
+  location                          = local.dataproc_region
   uniform_bucket_level_access       = true
   force_destroy                     = true
   depends_on = [
@@ -280,7 +283,7 @@ resource "google_storage_bucket" "lab_spark_bucket_creation" {
 resource "google_storage_bucket" "lab_data_bucket_creation" {
   project                           = local.project_id 
   name                              = local.lab_data_bucket
-  location                          = local.location
+  location                          = local.dataproc_region
   uniform_bucket_level_access       = true
   force_destroy                     = true
   depends_on = [
@@ -292,7 +295,7 @@ resource "google_storage_bucket" "lab_data_bucket_creation" {
 resource "google_storage_bucket" "lab_code_bucket_creation" {
   project                           = local.project_id 
   name                              = local.lab_code_bucket
-  location                          = local.location
+  location                          = local.dataproc_region
   uniform_bucket_level_access       = true
   force_destroy                     = true
   depends_on = [
@@ -332,6 +335,15 @@ resource "google_storage_bucket_object" "upload_lab_data_to_gcs" {
   depends_on = [
     time_sleep.sleep_after_bucket_creation
   ]
+}
+ 
+/******************************************
+11. Create a BQ dataset
+ ******************************************/
+ 
+resource "google_bigquery_dataset" "bq_dataset_creation" {
+  dataset_id                  = local.bq_datamart_ds
+  location                    = local.bq_region
 }
 
 
