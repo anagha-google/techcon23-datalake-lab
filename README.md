@@ -148,6 +148,7 @@ BigQuery public dataset has Chicago crimes dataset.
 4. Identify if there are IUCR description mismatches
 5. Identity missing entries in either table
 6. Create a crime trend report set with crimes by type, by year, month, week, day, hour.
+7. Enable the catalog API and lineage API and visualize the lineage after you complete the exercise
 
 <hr>
 
