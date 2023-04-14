@@ -6,12 +6,8 @@
 ## Reference Architecture
 
 
-## Pre-requisites
-
 
 ## Data Integration
-
-
 
 
 ## Data Analysis
