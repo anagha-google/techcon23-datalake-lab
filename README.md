@@ -8,7 +8,14 @@ This lab is intended to be a gentle introduction to Dataproc for the BigQuery sa
 
 ## Lab Solution Architecture
 
+![README](01-images/datalake-lab-architecture.png)   
+<br><br>
 
+## About Dataproc Templates
+
+Dataproc templates is an Apache Spark based, code-free solution to execute simple, but large, cloud data tasks, including data import/export/backup/restore and bulk API operations. Dataproc templates offers scale through parallelism natively available with Apache Spark, simplicity of management/zero ops through Dataproc's Serverless Spark feature (with autoscaling by default) and speed to production with its simplicity - no code, just configuration.
+
+There are a variety of generally available templates that integrate disparate systems.
 
 
 ## Lab Module 1: Data Integration with Cloud Dataproc
