@@ -52,10 +52,10 @@ REGION="us-central1"
 PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
 PROJECT_NBR=`gcloud projects describe $GCP_PROJECT | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
 SUBNET="lab-snet"
-GCS_DATA_SOURCE_LOCATION="gs://data-${PROJECT_NBR}"
+DATA_SOURCE_GCS_URI="gs://data-${PROJECT_NBR}/"
 BQ_DATASET_NM="crimes_ds"
-BQ_TABLE_NM="${GCP_PROJECT}:.chicago_iucr_ref"
-SCRATCH_BUCKET_NM="lab-spark-${PROJECT_NBR}"
+BQ_TABLE_NM="chicago_iucr_ref"
+SCRATCH_BUCKET_NM="lab-spark-bucket-${PROJECT_NBR}"
 UMSA_FQN="lab-sa@$PROJECT_ID.iam.gserviceaccount.com"
 
 
@@ -66,18 +66,35 @@ gcloud dataproc batches submit spark \
     --region="$REGION" \
     --jars="gs://dataproc-templates-binaries/latest/java/dataproc-templates.jar" \
     --subnet="$SUBNET" \
-    --service-account="UMSA_FQN" \
+    --service-account="$UMSA_FQN" \
     --batch="techcon-datalake-lab-$RANDOM" \
     -- --template=GCSTOBIGQUERY \
     --templateProperty log.level="INFO" \
     --templateProperty project.id="$PROJECT_ID" \
-    --templateProperty gcs.bigquery.input.location="$GCS_DATA_SOURCE_LOCATION" \
-    --templateProperty gcs.bigquery.input.format="CSV" \
+    --templateProperty gcs.bigquery.input.location="$DATA_SOURCE_GCS_URI" \
+    --templateProperty gcs.bigquery.input.format="csv" \
     --templateProperty gcs.bigquery.output.dataset="$BQ_DATASET_NM" \
     --templateProperty gcs.bigquery.output.table="$BQ_TABLE_NM" \
     --templateProperty gcs.bigquery.temp.bucket.name="$SCRATCH_BUCKET_NM" 
  
 ```
+
+![README](01-images/techcon-lab-00.png)   
+<br><br>
+
+### 1.2. Monitor the integration execution
+
+1. Navigate to the Dataproc UI->Batches in the Cloud Console
+
+![README](01-images/techcon-lab-01.png)   
+<br><br>
+
+2. Click on the batch job link displayed
+
+![README](01-images/techcon-lab-02.png)   
+<br><br>
+
+
 
 ### 1.3. Validation of integration operation
 
