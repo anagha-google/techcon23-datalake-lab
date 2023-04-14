@@ -169,9 +169,6 @@ module "umsa_role_grants" {
   ]
 }
 
-
-
-
 /******************************************************
 5. Grant Service Account Impersonation privilege to yourself/Admin User
  ******************************************************/
@@ -323,7 +320,7 @@ resource "time_sleep" "sleep_after_bucket_creation" {
 variable "csv_datasets_to_upload" {
   type = map(string)
   default = {
-    "../datasets/chicago-crimes/reference_data/crimes_chicago_iucr_ref.csv"="reference_data/crimes_chicago_iucr_ref.csv"
+    "../datasets/crimes_chicago_iucr_ref.csv"="crimes_chicago_iucr_ref.csv"
     }
 }
 
@@ -331,7 +328,7 @@ resource "google_storage_bucket_object" "upload_lab_data_to_gcs" {
   for_each = var.csv_datasets_to_upload
   name     = each.value
   source   = "${path.module}/${each.key}"
-  bucket   = "${local.lab_data_bucket_raw}"
+  bucket   = "${local.lab_data_bucket}"
   depends_on = [
     time_sleep.sleep_after_bucket_creation
   ]
