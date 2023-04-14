@@ -50,6 +50,7 @@ bq_datamart_ds              = "crimes_ds"
   enable_apis                 = true
 
   activate_apis = [
+    "iam.googleapis.com",   
     "compute.googleapis.com",
     "dataproc.googleapis.com",
     "bigqueryconnection.googleapis.com",
