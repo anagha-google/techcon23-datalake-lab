@@ -149,6 +149,7 @@ BigQuery public dataset has Chicago crimes dataset.
 5. Identity missing entries in either table
 6. Create a crime trend report set with crimes by type, by year, month, week, day, hour.
 7. Enable the catalog API and lineage API and visualize the lineage after you complete the exercise
+8. Create a custom lineage event that joins the iucr table to the crime table using the lineage API. [Sample](https://github.com/GoogleCloudPlatform/dataplex-labs/blob/main/dataplex-quickstart-labs/02-lab-guide/module-09-4-custom-lineage.md)
 
 <hr>
 
