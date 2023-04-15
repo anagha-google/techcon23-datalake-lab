@@ -59,7 +59,7 @@ Navigate the Cloud Console to each of the services/entities listed above and stu
 
 ### 1.2. Integration execution
 
-Documentation for just FYI: 
+Documentation just FYI: <br>
 https://cloud.google.com/dataproc-serverless/docs/templates/storage-to-bigquery#storage_to_bigquery_sample-gcloud
 <br>
 
