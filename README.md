@@ -1,4 +1,4 @@
-# Data Lake Lab for TechCon 2023
+# Data Lake Challenge Lab for TechCon 2023
 
 ## About the lab
 
