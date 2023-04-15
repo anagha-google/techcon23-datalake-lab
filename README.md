@@ -46,6 +46,8 @@ The automated provisioning creates the following. Optionally walk through the be
 | 05 | IAM permissions | For the User Managed Service Account and the User Principal running the lab |
 | 06 | Google APIs | For using the services needed for the lab |
 
+The automation also includes upload of data needed in the lab into Cloud Storage.<br>
+
 [Terraform scripts](00-resources/terraform/main.tf) | [Provisioning details just FYI](PROVISIONING.md)
 
 <hr>
