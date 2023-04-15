@@ -38,7 +38,7 @@ There are a variety of generally available templates that integrate disparate sy
 The automated provisioning creates the following. Optionally walk through the below on the Cloud Console.
 
 | # | Entity/Service | Purpose | 
-| -- |:--- | :--- | :--- |
+| -- |:--- | :--- | 
 | 01 | Cloud Storage Buckets | To host data for the lab & scratch bucket for Dataproc Serverless and the BigQuery Spark connector |
 | 02 | BigQuery Dataset | Logical container for target table |
 | 03 | Networking | VPC, Subnet with private google access and firewall rule for intra-VPC open communication for Dataproc Serverless |
