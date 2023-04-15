@@ -6,6 +6,9 @@ This lab demonstrates integration of structured data in Cloud Storage into BigQu
 
 This lab is intended to be a gentle introduction to Dataproc for the BigQuery savvy user base that aspire to ease into open data analytics on Google Cloud Platform.
 
+<br>
+Lab duration: 30 minutes or less
+
 <hr>
 
 ## Lab Solution Architecture
@@ -47,8 +50,9 @@ The automated provisioning creates the following. Optionally walk through the be
 | 06 | Google APIs | For using the services needed for the lab |
 
 The automation also includes upload of data needed in the lab into Cloud Storage.<br>
-
 [Terraform scripts](00-resources/terraform/main.tf) | [Provisioning details just FYI](PROVISIONING.md)
+
+Navigate the Cloud Console to each of the services/entities listed above and study what was provisioned for you.
 
 <hr>
 
