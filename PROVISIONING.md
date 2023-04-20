@@ -42,7 +42,7 @@ terraform plan \
   -var="user_principal_name=${YOUR_USER_PRINCIPAL_NAME}" \
   -var="org_id=${ORG_ID}" \
   -var="bq_region=${BQ_LOCATION}" \
-  -var="org_id=${DATAPROC_REGION}" 
+  -var="dataproc_region=${DATAPROC_REGION}" 
   
 ```
 
@@ -56,7 +56,7 @@ terraform apply \
   -var="user_principal_name=${YOUR_USER_PRINCIPAL_NAME}" \
   -var="org_id=${ORG_ID}" \
   -var="bq_region=${BQ_LOCATION}" \
-  -var="org_id=${DATAPROC_REGION}" \
+  -var="dataproc_region=${DATAPROC_REGION}" \
   --auto-approve
   
 ```
