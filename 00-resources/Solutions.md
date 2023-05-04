@@ -29,18 +29,31 @@ Here is how the data across the tables can be matched.
 
 There are discrepancies and this query catches them-
 ```
-select ct.unique_key, ct.iucr as iucr_ct, rd.iucr as iucr_rd, ct. 
+select distinct ct.iucr as iucr_ct, rd.iucr  as iucr_rd, ct.primary_type as primary_description, ct.description as secondary_description 
 from bigquery-public-data.chicago_crime.crime ct
 left outer join crimes_ds.chicago_iucr_ref rd
 on (ct.iucr=rd.iucr)
 where rd.iucr is null
 ```
 
-There are codes in the crimes table that are not in the IUCR codes table.
+There are codes in the crimes (transactions) table that are not in the IUCR codes (reference data) table. <br>
+Lets do a comparison based on IUCR descriptions.<br>
 
-Lets do a comparison on the crimes table description
+```
+WITH IUCR_DISCREPANCIES AS(
+select distinct ct.iucr as iucr_ct, rd.iucr  as iucr_rd, ct.primary_type as primary_description, ct.description as secondary_description 
+from bigquery-public-data.chicago_crime.crime ct
+left outer join crimes_ds.chicago_iucr_ref rd
+on (ct.iucr=rd.iucr)
+where rd.iucr is null)
+select IUCR_DISCREPANCIES.iucr_ct as iucr_crimes, IUCR_DISCREPANCIES.primary_description, IUCR_DISCREPANCIES.secondary_description,IUCR_REF.iucr as iucr_ref_data  
+from IUCR_DISCREPANCIES JOIN crimes_ds.chicago_iucr_ref IUCR_REF
+ON (IUCR_DISCREPANCIES.primary_description=IUCR_REF.primary_description and IUCR_DISCREPANCIES.secondary_description=IUCR_REF.secondary_description)
+```
 
+Great! Looks like the data we have in the crimes table is good to go, and accurate. The reference data on the other hand had a few codes missing left padding with zeroes. As a data engineer, you would update the architect with your findings.
 
+Lets proceed to the next step.
 
 
 
