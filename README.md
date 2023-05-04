@@ -171,7 +171,7 @@ select * from bigquery-public-data.chicago_crime.crime where iucr='1010' LIMIT 1
 2. Study the table we just loaded - crimes_ds.chicago_iucr_ref. <br>
 Paste in BigQuery UI-
 ```
-SELECT *  FROM `techcon-datalake-lab.crimes_ds.chicago_iucr_ref` LIMIT 1000
+SELECT *  FROM `crimes_ds.chicago_iucr_ref` LIMIT 1000
 ```
 ![BQ-4](01-images/techcon-lab-10.png)   
 <br><br>
