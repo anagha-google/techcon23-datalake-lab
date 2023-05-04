@@ -55,7 +55,14 @@ Great! Looks like the data we have in the crimes table is good to go, and accura
 
 Lets proceed to the next step.
 
+### 5. Identify missing entries in either table
 
+Now that we know the issue, lets run a SQL with the requisite left padding to ensure no dispancies-
+
+
+
+
+### 6. Create a crime trend report set with crimes by type, by year, month, week, day, hour
 
 
 
