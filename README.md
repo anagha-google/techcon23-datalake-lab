@@ -67,15 +67,15 @@ https://cloud.google.com/dataproc-serverless/docs/templates/storage-to-bigquery#
 
 Paste and run in Cloud Shell-
 ```
-REGION="us-central1"
-PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
-PROJECT_NBR=`gcloud projects describe $GCP_PROJECT | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
-SUBNET="lab-snet"
-DATA_SOURCE_GCS_URI="gs://data-${PROJECT_NBR}/"
-BQ_DATASET_NM="crimes_ds"
-BQ_TABLE_NM="chicago_iucr_ref"
-SCRATCH_BUCKET_NM="lab-spark-bucket-${PROJECT_NBR}"
-UMSA_FQN="lab-sa@$PROJECT_ID.iam.gserviceaccount.com"
+export REGION="us-central1"
+export PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
+export PROJECT_NBR=`gcloud projects describe $GCP_PROJECT | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
+export SUBNET="lab-snet"
+export DATA_SOURCE_GCS_URI="gs://data-${PROJECT_NBR}/"
+export BQ_DATASET_NM="crimes_ds"
+export BQ_TABLE_NM="chicago_iucr_ref"
+export SCRATCH_BUCKET_NM="lab-spark-bucket-${PROJECT_NBR}"
+export UMSA_FQN="lab-sa@$PROJECT_ID.iam.gserviceaccount.com"
 
 
 gcloud dataproc batches submit spark \
