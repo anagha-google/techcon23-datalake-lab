@@ -12,7 +12,7 @@ WHERE
 LIMIT
   10
 ```
-![BQ-4](01-images/techcon-lab-11.png)   
+![BQ-4](../01-images/techcon-lab-11.png)   
 <br><br>
 
 ### 2. Study the table we just loaded - crimes_ds.chicago_iucr_ref. <br>
@@ -25,7 +25,7 @@ FROM
 LIMIT
   10
 ```
-![BQ-4](01-images/techcon-lab-10.png)   
+![BQ-4](../01-images/techcon-lab-10.png)   
 <br><br>
 
 Check for nulls; There should not be any-
