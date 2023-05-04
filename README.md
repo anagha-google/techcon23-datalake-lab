@@ -160,38 +160,16 @@ gcloud dataproc batches submit spark \
 BigQuery public dataset has Chicago crimes dataset. 
 
 1. Explore the public dataset - bigquery-public-data.chicago_crime.crime
-Paste in BigQuery UI-
-```
-select * from bigquery-public-data.chicago_crime.crime where iucr='1010' LIMIT 10
-```
-![BQ-4](01-images/techcon-lab-11.png)   
-<br><br>
-
 
 2. Study the table we just loaded - crimes_ds.chicago_iucr_ref. <br>
-Paste in BigQuery UI-
-```
-SELECT *  FROM `crimes_ds.chicago_iucr_ref` LIMIT 1000
-```
-![BQ-4](01-images/techcon-lab-10.png)   
-<br><br>
-
-Check for nulls; There should not be any-
-```
-SELECT * FROM `crimes_ds.chicago_iucr_ref` where IUCR is null or IUCR=''
-```
-
-Check for distinct values, there should be no duplicates-
-```
-SELECT 'IUCR_COUNT_DISTINCT' as COUNT_TYPE, count(distinct IUCR) as COUNT   FROM `crimes_ds.chicago_iucr_ref` 
-UNION ALL
-SELECT 'IUCR_COUNT' as COUNT_TYPE, count( IUCR) as COUNT   FROM `crimes_ds.chicago_iucr_ref` 
-```
 
 3. Analyze the relationship between the two tables and how they can be joined
+
 4. Identify if there are IUCR description mismatches
-5. Identify missing entries in either table
-6. Create a crime trend report set with crimes by type, by year, month, week, day, hour.
+
+5. Identify missing entries in the creimes table
+
+6. Create a crime trend report set with crimes by type, by year
 
 Solutions are available [here](00-resources/Solutions.md).
 
