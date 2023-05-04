@@ -168,13 +168,25 @@ select * from bigquery-public-data.chicago_crime.crime where iucr='1010' LIMIT 1
 <br><br>
 
 
-2. Study the table we just loaded - crimes_ds.chicago_iucr_ref
+2. Study the table we just loaded - crimes_ds.chicago_iucr_ref. <br>
 Paste in BigQuery UI-
 ```
 SELECT *  FROM `techcon-datalake-lab.crimes_ds.chicago_iucr_ref` LIMIT 1000
 ```
 ![BQ-4](01-images/techcon-lab-10.png)   
 <br><br>
+
+Check for nulls; There should not be any-
+```
+SELECT * FROM `crimes_ds.chicago_iucr_ref` where IUCR is null or IUCR=''
+```
+
+Check for distinct values, there should be no duplicates-
+```
+SELECT 'IUCR_COUNT_DISTINCT' as COUNT_TYPE, count(distinct IUCR) as COUNT   FROM `crimes_ds.chicago_iucr_ref` 
+UNION ALL
+SELECT 'IUCR_COUNT' as COUNT_TYPE, count( IUCR) as COUNT   FROM `crimes_ds.chicago_iucr_ref` 
+```
 
 3. Analyze the relationship between the two tables and how they can be joined
 4. Identify if there are IUCR description mismatches
