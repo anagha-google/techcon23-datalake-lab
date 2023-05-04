@@ -14,7 +14,7 @@ And then, the reference data-
 select * from crimes_ds.chicago_iucr_ref where iucr='0470'
 ```
 
-iucr column is a match.
+The iucr column is a match.
 
 
 
