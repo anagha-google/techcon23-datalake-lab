@@ -6,12 +6,12 @@ From a quick visual, the column that the transactional crimes data and the refer
 
 <br>Lets look at the crimes transactional data-
 ```
-select * from bigquery-public-data.chicago_crime.crime where iucr='0470' LIMIT 2
+select * from bigquery-public-data.chicago_crime.crime where iucr='2826' LIMIT 2
 ```
 
 And then, the reference data-
 ```
-select * from crimes_ds.chicago_iucr_ref where iucr='0470'
+select * from crimes_ds.chicago_iucr_ref where active and iucr='2826'
 ```
 
 Here is how the data across the tables can be matched.
@@ -55,14 +55,43 @@ Great! Looks like the data we have in the crimes table is good to go, and accura
 
 Lets proceed to the next step.
 
-### 5. Identify missing entries in either table
+### 5. Identify missing entries in crimes table
 
-Now that we know the issue, lets run a SQL with the requisite left padding to ensure no dispancies-
+We need to ensure that there are no missing entries in the crimes table, which we already established. Lets ensure there are no null/blank descriptions by running in the BigQuery UI-
+```
+SELECT
+  *
+FROM
+  bigquery-public-data.chicago_crime.crime
+WHERE
+  primary_type IS NULL
+  OR description IS null
+ ```
 
 
+Our crimes data is good from an IUCR persective. The data engineer would information the architect and proceed with development. Lets proceed to report building.
 
 
-### 6. Create a crime trend report set with crimes by type, by year, month, week, day, hour
+### 6. Create a crime trend report set with crimes by type, by year
+
+Run in the BigQuery UI-
+```
+SELECT
+  year,
+  primary_type,
+  description,
+  COUNT(*) AS crime_count
+FROM
+  bigquery-public-data.chicago_crime.crime
+GROUP BY
+  year,
+  primary_type,
+  description
+ORDER BY
+  year,
+  primary_type,
+  description
+  ```
 
 
 
