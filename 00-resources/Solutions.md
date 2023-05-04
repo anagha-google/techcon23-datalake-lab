@@ -6,12 +6,25 @@ From a quick visual, the column that the transactional crimes data and the refer
 
 <br>Lets look at the crimes transactional data-
 ```
-select * from bigquery-public-data.chicago_crime.crime where iucr='2826' LIMIT 2
+SELECT
+  *
+FROM
+  bigquery-public-data.chicago_crime.crime
+WHERE
+  iucr='2826'
+LIMIT
+  2
 ```
 
 And then, the reference data-
 ```
-select * from crimes_ds.chicago_iucr_ref where active and iucr='2826'
+SELECT
+  *
+FROM
+  crimes_ds.chicago_iucr_ref
+WHERE
+  active
+  AND iucr='2826'
 ```
 
 Here is how the data across the tables can be matched.
@@ -29,11 +42,19 @@ Here is how the data across the tables can be matched.
 
 There are discrepancies and this query catches them-
 ```
-select distinct ct.iucr as iucr_ct, rd.iucr  as iucr_rd, ct.primary_type as primary_description, ct.description as secondary_description 
-from bigquery-public-data.chicago_crime.crime ct
-left outer join crimes_ds.chicago_iucr_ref rd
-on (ct.iucr=rd.iucr)
-where rd.iucr is null
+SELECT
+  DISTINCT ct.iucr AS iucr_ct,
+  rd.iucr AS iucr_rd,
+  ct.primary_type AS primary_description,
+  ct.description AS secondary_description
+FROM
+  bigquery-public-data.chicago_crime.crime ct
+LEFT OUTER JOIN
+  crimes_ds.chicago_iucr_ref rd
+ON
+  (ct.iucr=rd.iucr)
+WHERE
+  rd.iucr IS null
 ```
 
 There are codes in the crimes (transactions) table that are not in the IUCR codes (reference data) table. <br>
@@ -93,5 +114,5 @@ ORDER BY
   description
   ```
 
-
+<hr>
 
