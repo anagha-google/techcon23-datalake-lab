@@ -69,7 +69,7 @@ Paste and run in Cloud Shell-
 ```
 export REGION="us-central1"
 export PROJECT_ID=`gcloud config list --format "value(core.project)" 2>/dev/null`
-export PROJECT_NBR=`gcloud projects describe $GCP_PROJECT | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
+export PROJECT_NBR=`gcloud projects describe $PROJECT_ID | grep projectNumber | cut -d':' -f2 |  tr -d "'" | xargs`
 export SUBNET="lab-snet"
 export DATA_SOURCE_GCS_URI="gs://data-${PROJECT_NBR}/"
 export BQ_DATASET_NM="crimes_ds"
