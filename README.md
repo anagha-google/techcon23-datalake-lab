@@ -178,7 +178,7 @@ Solutions are available [here](00-resources/Solutions.md).
 
 ## Housekeeping
 
-Thsi concludes the lab. Shut down your GCP project to avoid billing.
+This concludes the lab. Shut down your GCP project to avoid billing.
 
 <hr>
 
