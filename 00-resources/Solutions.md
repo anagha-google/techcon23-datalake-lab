@@ -14,7 +14,37 @@ And then, the reference data-
 select * from crimes_ds.chicago_iucr_ref where iucr='0470'
 ```
 
-The iucr column is a match.
+Here is how the data across the tables can be matched.
+
+| Matches | 
+| -- |
+| ```bigquery-public-data.chicago_crime.crime.iucr=crimes_ds.chicago_iucr_ref.iucr``` | 
+| bigquery-public-data.chicago_crime.crime.primary_type=crimes_ds.chicago_iucr_ref.	
+PRIMARY_DESCRIPTION``` for the matching IUCR code | 
+| bigquery-public-data.chicago_crime.crime.description=crimes_ds.chicago_iucr_ref.	
+SECONDARY_DESCRIPTION``` for the matching IUCR code | 
+
+
+
+
+### 4. Identify if there are IUCR code/description discrepancies/mismatches across tables
+
+There are discrepancies and this query catches them-
+```
+select ct.unique_key, ct.iucr as iucr_ct, rd.iucr as iucr_rd, ct. 
+from bigquery-public-data.chicago_crime.crime ct
+left outer join crimes_ds.chicago_iucr_ref rd
+on (ct.iucr=rd.iucr)
+where rd.iucr is null
+```
+
+There are codes in the crimes table that are not in the IUCR codes table.
+
+Lets do a comparison on the crimes table description
+
+
+
+
 
 
 
