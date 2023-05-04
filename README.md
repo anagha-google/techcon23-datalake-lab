@@ -193,6 +193,8 @@ SELECT 'IUCR_COUNT' as COUNT_TYPE, count( IUCR) as COUNT   FROM `crimes_ds.chica
 5. Identify missing entries in either table
 6. Create a crime trend report set with crimes by type, by year, month, week, day, hour.
 
+Solutions are available [here](00-resources/Solutions.md).
+
 <hr>
 
 
