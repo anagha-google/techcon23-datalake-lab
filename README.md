@@ -167,7 +167,7 @@ BigQuery public dataset has Chicago crimes dataset.
 
 4. Identify if there are IUCR description mismatches
 
-5. Identify missing entries in the creimes table
+5. Identify missing entries in the crimes table
 
 6. Create a crime trend report set with crimes by type, by year
 
