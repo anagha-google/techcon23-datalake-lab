@@ -1,5 +1,59 @@
 # Solutions for Challenge Lab
 
+### 1. Explore the public dataset - bigquery-public-data.chicago_crime.crime
+Paste in BigQuery UI-
+```
+SELECT
+  *
+FROM
+  bigquery-public-data.chicago_crime.crime
+WHERE
+  iucr='1010'
+LIMIT
+  10
+```
+![BQ-4](01-images/techcon-lab-11.png)   
+<br><br>
+
+### 2. Study the table we just loaded - crimes_ds.chicago_iucr_ref. <br>
+Paste in BigQuery UI-
+```
+SELECT
+  *
+FROM
+  `crimes_ds.chicago_iucr_ref`
+LIMIT
+  10
+```
+![BQ-4](01-images/techcon-lab-10.png)   
+<br><br>
+
+Check for nulls; There should not be any-
+```
+SELECT
+  *
+FROM
+  `crimes_ds.chicago_iucr_ref`
+WHERE
+  IUCR IS NULL
+  OR IUCR=''
+```
+
+Check for distinct values, there should be no duplicates-
+```
+SELECT
+  'IUCR_COUNT_DISTINCT' AS COUNT_TYPE,
+  COUNT(DISTINCT IUCR) AS COUNT
+FROM
+  `crimes_ds.chicago_iucr_ref`
+UNION ALL
+SELECT
+  'IUCR_COUNT' AS COUNT_TYPE,
+  COUNT( IUCR) AS COUNT
+FROM
+  `crimes_ds.chicago_iucr_ref`
+```
+
 ### 3. Analyze the relationship between the two tables and how they can be joined
 
 From a quick visual, the column that the transactional crimes data and the reference IUCR codes data can be joined on is the IUCR codes. Lets study the IUCR codes across tables for code 0470-
@@ -31,7 +85,7 @@ Here is how the data across the tables can be matched.
 
 | Matches | 
 | -- |
-| ```bigquery-public-data.chicago_crime.crime.iucr=crimes_ds.chicago_iucr_ref.iucr``` | 
+| ```bigquery-public-data.chicago_crime.crime.iucr=crimes_ds.chicago_iucr_ref.iucr``` AND | 
 | ```bigquery-public-data.chicago_crime.crime.primary_type=crimes_ds.chicago_iucr_ref.PRIMARY_DESCRIPTION``` for the matching IUCR code | 
 | ```bigquery-public-data.chicago_crime.crime.description=crimes_ds.chicago_iucr_ref.SECONDARY_DESCRIPTION``` for the matching IUCR code | 
 
