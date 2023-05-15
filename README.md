@@ -113,7 +113,7 @@ gcloud dataproc batches submit spark \
 ![MONITOR-2](01-images/techcon-lab-02.png)   
 <br><br>
 
-3. Montiro to completion
+3. Monitor to completion
 
 ![MONITOR-3](01-images/techcon-lab-03.png)   
 <br><br>
